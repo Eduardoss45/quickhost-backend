@@ -120,7 +120,7 @@ LOGGING = {
         },
     },
 }
-ALLOWED_HOSTS = ["seuapp.railway.app", "outro-dominio.com"]
+ALLOWED_HOSTS = ["*"]
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SESSION_COOKIE_SECURE = True
