@@ -1,10 +1,10 @@
 import os
 from pathlib import Path
 from datetime import timedelta
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-@$dlqov(s!z$o1t2=!kp7alf6k_c6e8le8silx_n8=jdc8978m"
-DEBUG = True
-ALLOWED_HOSTS = ['seuapp.onrender.com', 'seuapp.railway.app', 'outro-dominio.com'] # Trocar
+DEBUG = False
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -26,6 +26,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "quickhost.api.middleware.UUIDMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 ROOT_URLCONF = "quickhost.urls"
 TEMPLATES = [
@@ -85,9 +86,6 @@ USE_TZ = True
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
 CORS_ALLOW_ALL_ORIGINS = True
 LOGGING = {
     "version": 1,
@@ -122,3 +120,11 @@ LOGGING = {
         },
     },
 }
+ALLOWED_HOSTS = ["seuapp.railway.app", "outro-dominio.com"]
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
